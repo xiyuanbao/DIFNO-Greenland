@@ -19,13 +19,15 @@ a frozen forward surrogate and compares it with the input SSH.
 Errors are per-sample relative L1, `mean(|pred - truth|) / mean(|truth|) x 100`, on the
 held-out test split. Cycle error compares the input SSH with the frozen forward surrogate
 applied to the predicted ice.
+Overall value first, per-family values in parentheses in the order of the training-data
+column.
 
 | Model | Map | Training data | Params | Method | Test rel-L1 (%) | Cycle rel-L1 (%) |
 |---|---|---|---:|---|---|---|
-| Default forward | ice -> SSH | single + multi | 21,950,313 | plain L1 | 0.23 / 0.25 (0.24 all) | n/a |
-| Triple forward | ice -> SSH | single + multi + coastal | 21,950,313 | plain L1 | 0.33 / 0.43 / 0.29 | n/a |
-| Default inverse | SSH -> ice | single + multi | 21,949,597 | L1 + cycle L1, PCGrad | 21.8 / 38.3 (30.1 all) | 0.68 |
-| Coastal inverse | SSH -> ice | coastal | 21,949,597 | amplitude-weighted L1 + cycle, CAGrad (c = 0.2) | 33.0 | 2.42 (3.05 normalised) |
+| Default forward | ice -> SSH | single + multi | 21,950,313 | plain L1 | 0.24 (0.23 / 0.25) | n/a |
+| Coastal forward | ice -> SSH | single + multi + coastal | 21,950,313 | plain L1 | 0.35 (0.33 / 0.43 / 0.29) | n/a |
+| Default inverse | SSH -> ice | single + multi | 21,949,597 | L1 + cycle L1, PCGrad | 30.1 (21.8 / 38.3) | 0.68 (0.69 / 0.68) |
+| Coastal inverse | SSH -> ice | coastal | 21,949,597 | amplitude-weighted L1 + cycle, CAGrad (c = 0.2) | 33.0 | 3.05 |
 
 All four share the same backbone: 20 x 20 Fourier modes, width 32, Adam at lr 1e-3 with
 weight decay 1e-4 and `StepLR(step 100, gamma 0.1)`.
@@ -40,7 +42,7 @@ src/                 importable modules factored out of the training notebooks
   utilities.py       count_params, percentage_difference, print_params_by_module
   adam.py            complex-capable Adam
   device.py          cuda -> mps -> cpu selection
-01_train_forward.ipynb   default forward (section 1) and triple forward (section 2)
+01_train_forward.ipynb   default forward (section 1) and coastal forward (section 2)
 02_train_inverse.ipynb   default inverse / PCGrad (1) and coastal inverse / CAGrad (2)
 docs/                    architecture schematic (PNG for this page, PDF vector)
 ```
