@@ -1,0 +1,8 @@
+# Python 3.10 or newer (developed and tested with 3.12.7).
+# Versions below are the ones the notebooks were last executed with; older
+# releases back to torch 2.0 should work but are untested.
+torch>=2.0,<3          # 2.7.0 used
+numpy>=1.24,<2         # 1.26.4 used; the checkpoints were pickled with NumPy 1.x
+scipy>=1.10            # 1.13.1 used (CAGrad line search)
+matplotlib>=3.7        # 3.9.2 used
+jupyter>=1.0           # notebook 7.2 / jupyterlab 4.2 used

@@ -1,0 +1,22 @@
+# Model checkpoints and data are distributed separately, never committed.
+*.pt
+*.pth
+*.npz
+*.npy
+*.mat
+*.h5
+*.hdf5
+
+data/
+no_smooth/
+_Models/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+env/
+
+# OS
+.DS_Store
