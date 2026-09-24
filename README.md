@@ -10,6 +10,10 @@ is iterated four times (the "iterative" part). PI-DIFNO adds physics: the invers
 is trained with a cycle-consistency loss that pushes its predicted ice field back through
 a frozen forward surrogate and compares it with the input SSH.
 
+![PI-DIFNO architecture](docs/FNO_wphysics_fine.png)
+
+*Architecture of DIFNO and the physics (cycle-consistency) loss used for the inverse problem. Vector version: [docs/FNO_wphysics_fine.pdf](docs/FNO_wphysics_fine.pdf).*
+
 ## The four trained operators
 
 Errors are per-sample relative L1, `mean(|pred - truth|) / mean(|truth|) x 100`, on the
@@ -38,6 +42,7 @@ src/                 importable modules factored out of the training notebooks
   device.py          cuda -> mps -> cpu selection
 01_train_forward.ipynb   default forward (section 1) and triple forward (section 2)
 02_train_inverse.ipynb   default inverse / PCGrad (1) and coastal inverse / CAGrad (2)
+docs/                    architecture schematic (PNG for this page, PDF vector)
 ```
 
 ## Running
